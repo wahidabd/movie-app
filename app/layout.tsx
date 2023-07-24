@@ -1,7 +1,7 @@
 import './globals.css'
 import type {Metadata} from 'next'
 import {Inter} from 'next/font/google'
-import RootProvider from "@/app/RootProvider";
+import RootProvider from "@/components/RootProvider";
 import React from "react";
 import PrimaryLayout from "@/components/PrimaryLayout";
 

@@ -12,15 +12,15 @@ export const getPopularMovie = (page?: number): Promise<ResponseMovieList> => {
     return request.get(`movie/popular?page=${page}`).json();
 }
 
-export const getMovieTopRated = (page?: number): Promise<ResponseMovieList> => {
+export const getTopRatedMovie = (page?: number): Promise<ResponseMovieList> => {
     return request.get(`movie/top_rated?page=${page}`).json();
 };
 
-export const getMovieUpcoming = (page?: number): Promise<ResponseMovieList> => {
+export const getUpcomingMovie = (page?: number): Promise<ResponseMovieList> => {
     return request.get(`movie/upcoming?page=${page}`).json();
 };
 
-export const getMovieDetail = (movie_id: number): Promise<TypeMovieDetail> => {
+export const getDetailMovie = (movie_id: number): Promise<TypeMovieDetail> => {
     return request.get(`movie/${movie_id}?append_to_response=videos`).json();
 };
 
