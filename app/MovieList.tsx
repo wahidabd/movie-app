@@ -1,18 +1,21 @@
 "use client";
 
 import React, {Fragment, useEffect} from 'react';
-import {useGetMoviePopular} from "@/hooks/movie";
+import {useGetMoviePopular, useGetMovieTopRated} from "@/hooks/movie";
 import {useInView} from "react-intersection-observer";
 import MovieCard from "@/components/movie/MovieCard";
+import {TypeMovie} from "@/types";
+import {TYPE} from "@/constants/tmdb";
 
 type Props = {}
 
 const MovieList = ({movies}: {movies: Props}) => {
 
     const {data, isFetching, fetchNextPage, isFetchingNextPage, hasNextPage} =
-    useGetMoviePopular(["popular", {movies}])
+        useGetMoviePopular(['popular', {movies}])
 
     const {ref: endRef, inView} = useInView();
+
     useEffect(() => {
         if (inView && hasNextPage && !isFetchingNextPage) fetchNextPage?.()
     }, [inView, hasNextPage, isFetchingNextPage]);
@@ -29,6 +32,14 @@ const MovieList = ({movies}: {movies: Props}) => {
                     </Fragment>
                 ))}
             </ul>
+            {(isFetching || isFetchingNextPage) && (
+                <div className='text-center py-4'>Loading...</div>
+            )}
+            {
+                !!data?.pages?.[0]?.results?.length
+                && hasNextPage && !isFetchingNextPage
+                && !isFetching && <div ref={endRef} className='opacity-0 h-4'/>
+            }
         </div>
     );
 };

@@ -1,11 +1,10 @@
-import {getPopularMovie} from "@/services/tmdbRequest";
+import React from 'react';
+import {getPopularMovie, getUpcomingMovie} from "@/services/tmdbRequest";
 import {numberWithCommas} from "@/lib/number";
-import MovieList from "@/app/MovieList";
-import React from "react";
+import MovieList from "@/app/upcoming/MovieList";
 
-export default async function Home() {
-
-    const popularMovie = await getPopularMovie();
+const Upcoming = async () => {
+    const upcomingMovies = await getUpcomingMovie();
 
     return (
         <main className="min-h-screen max-w-5xl mx-auto px-4 lg:px-0">
@@ -18,10 +17,12 @@ export default async function Home() {
             <div className="space-y-4">
                 <p className="text-gray-400">
                     <strong className="text-2xl mr-1">All </strong>(
-                    {numberWithCommas(popularMovie?.total_results)})
+                    {numberWithCommas(upcomingMovies?.total_results)})
                 </p>
-                <MovieList movies={popularMovie}/>
+                <MovieList movies={upcomingMovies}/>
             </div>
         </main>
     )
-}
+};
+
+export default Upcoming;

@@ -4,3 +4,8 @@ export const GENDER = {
     1: 'Female',
     2: 'Male'
 }
+
+export enum TYPE {
+    popular = "popular",
+    top_rated =  "top-rated"
+}
